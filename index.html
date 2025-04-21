@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playbook - Robot Héroe Avanzado - Sesión 9: ¡Calidad Feature Adicional 1!</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; color: #333; line-height: 1.6; }
+        .container { max-width: 1000px; margin: auto; padding: 20px; }
+        .header { background-color: #ffa500; color: white; text-align: center; padding: 10px; } /* Orange Accent */
+        .activity { margin-bottom: 20px; }
+        .banner {
+            background-color: #ffa500; /* Orange Accent */
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            font-weight: bold;
+            /* Added Flexbox for side-by-side layout */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        /* Use details/summary for accordions */
+        details > summary {
+            list-style: none; /* Remove default triangle */
+        }
+        details > summary::-webkit-details-marker {
+            display: none; /* Remove default triangle for Chrome/Safari */
+        }
+        details > summary::marker {
+             display: none; /* Remove default triangle for Firefox */
+        }
+        /* Custom marker logic (optional) */
+        /*
+         details > summary:before {
+            content: '▶ ';
+            margin-right: 5px;
+         }
+         details[open] > summary:before {
+            content: '▼ ';
+         }
+        */
+        .content { display: block; padding: 10px; border: 1px solid #ddd; margin-top: -10px; margin-bottom: 10px; border-top: none;} /* Ensure content is visible by default */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+            vertical-align: top;
+        }
+        span[style*="color: red;"] { /* Keep red span for emphasis */
+            font-weight: bold;
+        }
+         ul, ol {
+            margin-top: 0;
+            margin-bottom: 10px;
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+        .time-title { margin-bottom: 20px; text-align: center; font-size: 1.2em; color: #555;}
+        /* Style for Kanban icons */
+        .kanban-icon { font-size: 1.2em; margin: 0 2px; }
+        .kanban-todo { color: #f0ad4e; } /* Yellow/Orange for To Do */
+        .kanban-doing { color: #5bc0de; } /* Blue for Doing */
+        .kanban-test { color: #d9534f; } /* Red for Test */
+        .kanban-done { color: #5cb85c; } /* Green for Done */
+
+        /* Span styles for title and time in banner */
+        .activity-title {
+            flex-grow: 1; /* Allows title to take available space */
+            padding-right: 10px; /* Add some space between title and time */
+        }
+        .activity-time {
+            white-space: nowrap; /* Prevents time from wrapping */
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Playbook - Robot Héroe Avanzado - Sesión 9: ¡Calidad Feature Adicional 1!</h1>
+    </div>
+    <div class="container">
+        <h2 class="time-title">Tiempo efectivo de clase: 40 minutos</h2>
+
+        <!-- Resumen de Sesión -->
+        <details id="activity-0" class="activity">
+            <summary class="banner">
+                <span class="activity-title">📝 Resumen de Sesión</span>
+                <span class="activity-time"></span>
+            </summary>
+            <div class="content">
+                <table>
+                    <tr>
+                        <td style="width: 50%; padding: 10px; border-right: 1px solid #ddd;">
+                            <strong>🎯 Objetivo de la Sesión:</strong>
+                            <ul>
+                                <li>Probar exhaustivamente la primera funcionalidad adicional (Feature 1).</li>
+                                <li>Asegurar que la Feature 1 se integra correctamente con el núcleo funcional.</li>
+                                <li>Corregir los errores encontrados durante las pruebas exhaustivas.</li>
+                                <li>Validar que la nueva feature no afecta negativamente al núcleo ya probado.</li>
+                            </ul>
+                            <strong>⏱️ Duración Estimada:</strong> 40 minutos.
+                        </td>
+                        <td style="width: 50%; padding: 10px;">
+                            <strong>🔑 Entregable Clave:</strong>
+                            <ul>
+                                <li>Tarea de la Feature 1 probada exhaustivamente y movida a "¡Listo!" (✅) si cumple criterios de calidad e integración.</li>
+                                <li>Bugs de la Feature 1 (y posibles regresiones en el núcleo) corregidos.</li>
+                                <li>Confirmación de que la Feature 1 funciona sin romper la funcionalidad del núcleo.</li>
+                            </ul>
+                            <strong>🛠️ Materiales Específicos:</strong>
+                             <ul>
+                                <li>Proyector o pantalla interactiva.</li>
+                                <li>Presentación de diapositivas (Diapositivas 1-5 propuestas).</li>
+                                <li>Tableros Kanban de cada equipo (actualizados de S8, idealmente con Feature 1 en 🔬).</li>
+                                <li>Prototipos con Feature 1 lista para pruebas exhaustivas.</li>
+                                <li>Computadoras con software de programación y código de Feature 1 (y núcleo).</li>
+                                <li>Plan de pruebas completo para Feature 1 (diseñado en S7/S8, incluyendo interacción con núcleo).</li>
+                                <li>Entorno de prueba necesario para Feature 1 y núcleo.</li>
+                                <li>Documentación de sesiones anteriores (diseño, bugs reportados).</li>
+                             </ul>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </details>
+
+        <!-- Desarrollo de la Sesión -->
+
+        <!-- Actividad 1: ¡Stand-up de Calidad Feature 1! -->
+        <details id="activity-1" class="activity">
+            <summary class="banner">
+                 <span class="activity-title">✨ Actividad 1: ¡Stand-up de Calidad Feature 1!</span>
+                 <span class="activity-time">⏰ Tiempo: 5 minutos</span>
+            </summary>
+            <div class="content">
+                <table>
+                    <tr>
+                        <th style="width: 50%;">Acción</th>
+                        <th style="width: 50%;">Diálogo del Maestro</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Paso 1 (1 min):</strong> Iniciar la sesión enfocada en la calidad y pruebas exhaustivas de Feature 1.
+                            <br><em>(<strong>Proyectar Diapositiva 1:</strong> Título Sesión 9 (Avanzado) + Objetivo: "¡Calidad Feature Adicional 1! Objetivo: Probar exhaustivamente, asegurar integración y corregir errores").</em>
+                        </td>
+                        <td>
+                            "¡Equipos, Sesión 9! Hoy nos convertimos en los guardianes de la calidad de nuestra primera Feature Adicional. El objetivo es probarla a fondo, asegurarnos de que funciona bien con el resto del robot y corregir cualquier problema."
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Paso 2 (3 min):</strong> Stand-up enfocado en la tarea Feature 1 en "Listo para Probar" 🔬. El Tester explica el plan completo.
+                            <br><em>(<strong>Proyectar Diapositiva 2:</strong> Stand-up Calidad Feature 1 - Foco en tarea Feature 1 en 🔬. Pregunta clave Tester 🧪: ¿Plan de pruebas COMPLETO (incluyendo interacción con núcleo)?).</em>
+                        </td>
+                        <td>
+                            "Iniciamos con el 'Stand-up de Calidad'. Miremos la tarea de la Feature 1, que debería estar en <strong class='kanban-icon kanban-test'>🔬 Listo para Probar</strong>."
+                            <br><br>
+                            "<strong>Tester (🧪)</strong>, es tu momento estelar. Explica a tu equipo el plan de pruebas <span style='color: red;'>COMPLETO</span> que tienes para hoy:"
+                            <br>
+                            "1. ¿Cómo vas a probar la feature de forma exhaustiva (diferentes casos, valores límite)?"
+                            <br>
+                            "2. ¿Qué pruebas específicas harás para verificar que se <span style='color: red;'>integra bien con el núcleo</span> y no lo afecta negativamente?"
+                            <br><br>
+                            "Asegúrate de que todos sepan qué se va a verificar hoy a fondo." <em>(Moderar explicación del Tester).</em>
+                        </td>
+                    </tr>
+                     <tr>
+                        <td>
+                            <strong>Paso 3 (1 min):</strong> Preparación para las pruebas exhaustivas.
+                        </td>
+                        <td>
+                            "¡Plan claro! Ingenieros/as (💻), preparen el código final de la Feature 1. Arquitectos/as T. (📐), atentos a la interacción con el sistema completo. ¡Vamos a validar esa nueva habilidad!"
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </details>
+
+        <!-- Actividad 2: ¡Ciclo Pruebas-Corrección Feature 1! -->
+        <details id="activity-2" class="activity">
+            <summary class="banner">
+                 <span class="activity-title">🔄 Actividad 2: ¡Ciclo Pruebas-Corrección Feature 1!</span>
+                 <span class="activity-time">⏰ Tiempo: 30 minutos</span>
+            </summary>
+            <div class="content">
+                <table>
+                    <tr>
+                        <th style="width: 50%;">Acción</th>
+                        <th style="width: 50%;">Diálogo del Maestro</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Paso 1 (3 min):</strong> Iniciar la ejecución de pruebas exhaustivas y explicar el ciclo, incluyendo la verificación de no-regresión.
+                            <br><em>(<strong>Proyectar Diapositiva 3:</strong> Ciclo Pruebas-Corrección F1 - Tester 🧪 ejecuta pruebas exhaustivas. Ing. 💻 corrige bugs. Kanban: 🔬 -> Falla -> ⚙️ | Pasa -> ✅. ¡Atención! Verificar que NO afecte negativamente al núcleo).</em>
+                        </td>
+                        <td>
+                            "¡Comienza el ciclo de calidad para la Feature 1!"
+                            <br><br>
+                            "▶️ <strong>Tester (🧪):</strong> Ejecuta tu plan de pruebas exhaustivas. Prueba diferentes escenarios, casos límite y, muy importante, verifica la interacción con el núcleo. Reporta cualquier bug encontrado."
+                            <br>
+                            "▶️ <strong>Ingeniero/a (💻):</strong> Si el Tester encuentra bugs en la Feature 1, corrígelos. Mueve la tarea entre <strong class='kanban-icon kanban-test'>🔬 Listo para Probar</strong> y <strong class='kanban-icon kanban-doing'>⚙️ Haciendo</strong> según sea necesario."
+                            <br>
+                            "▶️ <strong>¡ATENCIÓN ESPECIAL EQUIPO!:</strong> Mientras prueban la Feature 1, presten mucha atención a si su activación o funcionamiento <span style='color: red;'>afecta negativamente</span> al núcleo que ya habíamos probado. ¿Deja de seguir la línea? ¿La detección de obstáculos falla ahora? ¡Esto se llama regresión y hay que evitarlo!"
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Paso 2 (25 min):</strong> Facilitar el ciclo de pruebas exhaustivas, corrección y verificación de integración.
+                            <br><em>(<strong>Proyectar Diapositiva 4:</strong> Kanban Ciclo Calidad F1 - Recordatorio visual del ciclo 🔬->⚙️->🔬->✅ con énfasis en "¿Afecta al núcleo?").</em>
+                            <br>Circular, ayudar a identificar bugs sutiles o problemas de interacción.
+                            <br>Guiar al Ingeniero/a en la corrección.
+                            <br>Preguntar explícitamente al Tester si observa algún impacto negativo en el núcleo.
+                            <br>El Arquitecto/a T. supervisa la integridad del sistema.
+                        </td>
+                        <td>
+                            "¡Adelante con las pruebas y correcciones! Tienen 25 minutos para este ciclo de calidad."
+                            <br><br>
+                            <em>(Mientras circulas):</em>
+                            "Tester, ¿la feature funciona en este caso límite? ¿Y qué pasa con la función del núcleo mientras la feature está activa? ¿Sigue funcionando bien?"
+                            "Ingeniero/a, ese bug parece relacionado con [sugerir posible causa]. ¿Cómo lo vas a abordar?"
+                            "Arquitecto/a T., ¿ves algún conflicto potencial entre la lógica de la Feature 1 y la del núcleo?"
+                            "¡Recuerden el flujo Kanban! Muevan la tarjeta según los resultados."
+                            "El objetivo es una Feature 1 que funcione bien Y juegue limpio con el resto del robot."
+                        </td>
+                    </tr>
+                     <tr>
+                        <td>
+                            <strong>Paso 3 (2 min):</strong> Resumen del ciclo Kanban aplicado a Feature 1.
+                        </td>
+                        <td>
+                            "Recordemos rápidamente el ciclo Kanban que hemos estado aplicando:"
+                            <br>
+                            "Prueba exhaustiva en 🔬 -> Si falla (bug o afecta núcleo) -> Vuelve a ⚙️ para corregir -> Una vez corregido -> Vuelve a 🔬 para re-probar."
+                            <br>
+                            "Solo si pasa todas las pruebas (funciona bien y no rompe nada) -> Pasa a ✅."
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </details>
+
+        <!-- Actividad 3: ¡Feature 1 Integrada y Lista! -->
+        <details id="activity-3" class="activity">
+            <summary class="banner">
+                 <span class="activity-title">✅ Actividad 3: ¡Feature 1 Integrada y Lista!</span>
+                 <span class="activity-time">⏰ Tiempo: 5 minutos</span>
+            </summary>
+            <div class="content">
+                <table>
+                     <tr>
+                        <th style="width: 50%;">Acción</th>
+                        <th style="width: 50%;">Diálogo del Maestro</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Paso 1 (3 min):</strong> Revisión final del estado de la Feature 1. Tomar decisión final en Kanban.
+                            <br><em>(<strong>Proyectar Diapositiva 5:</strong> ¡Feature 1 Lista! - Kanban final S9. Preguntas: ¿Feature 1 funciona correctamente? ¿NO rompe nada del núcleo? Decisión final: Mover tarjeta a ✅ ¡Listo!).</em>
+                        </td>
+                        <td>
+                            "¡Última revisión de calidad, equipos! Miremos la tarea de la Feature 1."
+                            <br><br>
+                            "Preguntas finales clave:"
+                            <br>
+                            "1. ¿La Feature 1 funciona correctamente según todas las pruebas exhaustivas?"
+                            <br>
+                            "2. ¿Hemos verificado que <span style='color: red;'>NO</span> afecta negativamente ni rompe la funcionalidad del núcleo?"
+                            <br><br>
+                            "Si la respuesta a ambas es SÍ, ¡felicidades! Han integrado con éxito su primer poder adicional. <strong>¡Muevan la tarjeta 'Feature 1' a <strong class='kanban-icon kanban-done'>✅ ¡Listo!</strong></strong>"
+                            <br>
+                            "Si aún quedan detalles importantes o afecta al núcleo, debe quedarse en ⚙️ o 🔬 para la siguiente fase."
+                            <br><br>
+                            "¡Tomen la decisión final en su Kanban!" <em>(Verificar movimiento).</em>
+                        </td>
+                    </tr>
+                     <tr>
+                        <td>
+                            <strong>Paso 2 (2 min):</strong> Cierre de la sesión y anticipación de la Sesión 10 (Decisión Estratégica).
+                        </td>
+                        <td>
+                            "¡Increíble trabajo asegurando la calidad de la Feature 1! Probar a fondo y cuidar la integración es esencial para robots complejos."
+                            <br><br>
+                            "Con la primera feature adicional completada (o casi), llegamos a un punto interesante."
+                            <br><br>
+                            "En la Sesión 10, tendremos una '¡Decisión Estratégica!'. Evaluaremos el estado general del robot y decidiremos: ¿Nos enfocamos en <span style='color: red;'>refinar</span> lo que ya tenemos (mejorar estabilidad, corregir bugs menores)? ¿O intentamos añadir una <span style='color: red;'>segunda feature</span> más pequeña? ¡Será una decisión importante del equipo!"
+                            <br><br>
+                            "¡Guarden todo! ¡Nos vemos para tomar decisiones estratégicas!"
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </details>
+
+    </div> <!-- Fin del container -->
+</body>
+</html>
