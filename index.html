@@ -14,34 +14,24 @@
             color: white;
             padding: 10px;
             cursor: pointer;
-            margin-bottom: 10px;
+            margin-bottom: 10px; /* Adjusted for spacing */
             font-weight: bold;
-            /* Added Flexbox for side-by-side layout */
-            display: flex;
+            list-style: none;
+            display: flex; /* For side-by-side title and time */
             justify-content: space-between;
             align-items: center;
+            border-radius: 5px; /* Rounded corners for banner */
         }
-        /* Use details/summary for accordions */
-        details > summary {
-            list-style: none; /* Remove default triangle */
+        .content { 
+            display: none; 
+            padding: 15px; 
+            border: 1px solid #ddd; 
+            margin-bottom: 10px; 
+            border-radius: 5px; /* Rounded corners for content */
+            margin-top: -10px; /* Visual connection with banner */
+            padding-top: 20px; /* Avoid text clash */
+            background-color: #fff; /* Ensure content background is white or default */
         }
-        details > summary::-webkit-details-marker {
-            display: none; /* Remove default triangle for Chrome/Safari */
-        }
-        details > summary::marker {
-             display: none; /* Remove default triangle for Firefox */
-        }
-        /* Custom marker logic (optional) */
-        /*
-         details > summary:before {
-            content: '▶ ';
-            margin-right: 5px;
-         }
-         details[open] > summary:before {
-            content: '▼ ';
-         }
-        */
-        .content { display: block; padding: 10px; border: 1px solid #ddd; margin-top: -10px; margin-bottom: 10px; border-top: none;} /* Ensure content is visible by default */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -52,7 +42,7 @@
             text-align: left;
             vertical-align: top;
         }
-        span[style*="color: red;"] { /* Keep red span for emphasis */
+        span[style*="color: red;"] { 
             font-weight: bold;
         }
          ul, ol {
@@ -71,15 +61,49 @@
         .kanban-test { color: #d9534f; } /* Red for Test */
         .kanban-done { color: #5cb85c; } /* Green for Done */
 
-        /* Span styles for title and time in banner */
+        /* Making facilitator instructions clearer */
+        td em, td i { /* Style for italicized facilitator notes */
+            color: #555;
+            font-style: italic;
+            display: block; /* Put notes on new lines */
+            margin-top: 5px;
+        }
+        /* Ensure step <strong> tags render bold */
+        td strong { font-weight: bold; } /* General strong for keywords */
+        td > strong { display: block; margin-bottom: 5px; } /* For step headers */
+
         .activity-title {
-            flex-grow: 1; /* Allows title to take available space */
-            padding-right: 10px; /* Add some space between title and time */
+            flex-grow: 1; 
+            padding-right: 10px; 
         }
         .activity-time {
-            white-space: nowrap; /* Prevents time from wrapping */
+            white-space: nowrap; 
         }
     </style>
+    <script>
+        function toggleContent(id) {
+            const content = document.getElementById(id);
+            if (content) {
+                if (content.style.display === "none" || content.style.display === "") {
+                    content.style.display = "block";
+                } else {
+                    content.style.display = "none";
+                }
+            }
+        }
+
+        window.onload = () => {
+            const contents = document.querySelectorAll('.content');
+            contents.forEach(content => {
+                content.style.display = 'none';
+            });
+            // Open "Resumen de Sesión" by default
+            const resumenContent = document.getElementById('activity_0_content');
+            if (resumenContent) {
+                resumenContent.style.display = 'block';
+            }
+        };
+    </script>
 </head>
 <body>
     <div class="header">
@@ -89,12 +113,12 @@
         <h2 class="time-title">Tiempo efectivo de clase: 40 minutos</h2>
 
         <!-- Resumen de Sesión -->
-        <details id="activity-0" class="activity">
-            <summary class="banner">
+        <div id="activity-0" class="activity">
+            <div class="banner" onclick="toggleContent('activity_0_content')">
                 <span class="activity-title">📝 Resumen de Sesión</span>
                 <span class="activity-time"></span>
-            </summary>
-            <div class="content">
+            </div>
+            <div id="activity_0_content" class="content" style="display: block;">
                 <table>
                     <tr>
                         <td style="width: 50%; padding: 10px; border-right: 1px solid #ddd;">
@@ -129,17 +153,17 @@
                     </tr>
                 </table>
             </div>
-        </details>
+        </div>
 
         <!-- Desarrollo de la Sesión -->
 
         <!-- Actividad 1: ¡Stand-up de Calidad Feature 1! -->
-        <details id="activity-1" class="activity">
-            <summary class="banner">
+        <div id="activity-1" class="activity">
+            <div class="banner" onclick="toggleContent('activity_1_content')">
                  <span class="activity-title">✨ Actividad 1: ¡Stand-up de Calidad Feature 1!</span>
                  <span class="activity-time">⏰ Tiempo: 5 minutos</span>
-            </summary>
-            <div class="content">
+            </div>
+            <div id="activity_1_content" class="content">
                 <table>
                     <tr>
                         <th style="width: 50%;">Acción</th>
@@ -147,17 +171,24 @@
                     </tr>
                     <tr>
                         <td>
-                            <strong>Paso 1 (1 min):</strong> Iniciar la sesión enfocada en la calidad y pruebas exhaustivas de Feature 1.
-                            <br><em>(<strong>Proyectar Diapositiva 1:</strong> Título Sesión 9 (Avanzado) + Objetivo: "¡Calidad Feature Adicional 1! Objetivo: Probar exhaustivamente, asegurar integración y corregir errores").</em>
+                            <strong>Paso 1 (1 min):</strong>
+                            <ul>
+                                <li>Iniciar la sesión enfocada en la calidad y pruebas exhaustivas de Feature 1.</li>
+                                <li><strong>Proyectar Diapositiva 1</strong>.</li>
+                            </ul>
                         </td>
                         <td>
-                            "¡Equipos, Sesión 9! Hoy nos convertimos en los guardianes de la calidad de nuestra primera Feature Adicional. El objetivo es probarla a fondo, asegurarnos de que funciona bien con el resto del robot y corregir cualquier problema."
+                            "¡Equipos, Sesión 9! Hoy nos convertimos en los guardianes de la calidad de nuestra primera Feature Adicional. El objetivo es probarla a fondo, asegurarnos de que funciona de maravilla y se lleva bien con el resto del robot."
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <strong>Paso 2 (3 min):</strong> Stand-up enfocado en la tarea Feature 1 en "Listo para Probar" 🔬. El Tester explica el plan completo.
-                            <br><em>(<strong>Proyectar Diapositiva 2:</strong> Stand-up Calidad Feature 1 - Foco en tarea Feature 1 en 🔬. Pregunta clave Tester 🧪: ¿Plan de pruebas COMPLETO (incluyendo interacción con núcleo)?).</em>
+                            <strong>Paso 2 (3 min):</strong>
+                            <ul>
+                                <li>Stand-up enfocado en la tarea Feature 1 en "Listo para Probar" 🔬.</li>
+                                <li>El Tester explica el plan completo.</li>
+                                <li><strong>Proyectar Diapositiva 2</strong>.</li>
+                            </ul>
                         </td>
                         <td>
                             "Iniciamos con el 'Stand-up de Calidad'. Miremos la tarea de la Feature 1, que debería estar en <strong class='kanban-icon kanban-test'>🔬 Listo para Probar</strong>."
@@ -173,7 +204,10 @@
                     </tr>
                      <tr>
                         <td>
-                            <strong>Paso 3 (1 min):</strong> Preparación para las pruebas exhaustivas.
+                            <strong>Paso 3 (1 min):</strong>
+                            <ul>
+                                <li>Preparación para las pruebas exhaustivas.</li>
+                            </ul>
                         </td>
                         <td>
                             "¡Plan claro! Ingenieros/as (💻), preparen el código final de la Feature 1. Arquitectos/as T. (📐), atentos a la interacción con el sistema completo. ¡Vamos a validar esa nueva habilidad!"
@@ -181,15 +215,15 @@
                     </tr>
                 </table>
             </div>
-        </details>
+        </div>
 
         <!-- Actividad 2: ¡Ciclo Pruebas-Corrección Feature 1! -->
-        <details id="activity-2" class="activity">
-            <summary class="banner">
+        <div id="activity-2" class="activity">
+            <div class="banner" onclick="toggleContent('activity_2_content')">
                  <span class="activity-title">🔄 Actividad 2: ¡Ciclo Pruebas-Corrección Feature 1!</span>
                  <span class="activity-time">⏰ Tiempo: 30 minutos</span>
-            </summary>
-            <div class="content">
+            </div>
+            <div id="activity_2_content" class="content">
                 <table>
                     <tr>
                         <th style="width: 50%;">Acción</th>
@@ -197,8 +231,11 @@
                     </tr>
                     <tr>
                         <td>
-                            <strong>Paso 1 (3 min):</strong> Iniciar la ejecución de pruebas exhaustivas y explicar el ciclo, incluyendo la verificación de no-regresión.
-                            <br><em>(<strong>Proyectar Diapositiva 3:</strong> Ciclo Pruebas-Corrección F1 - Tester 🧪 ejecuta pruebas exhaustivas. Ing. 💻 corrige bugs. Kanban: 🔬 -> Falla -> ⚙️ | Pasa -> ✅. ¡Atención! Verificar que NO afecte negativamente al núcleo).</em>
+                            <strong>Paso 1 (3 min):</strong>
+                            <ul>
+                                <li>Iniciar la ejecución de pruebas exhaustivas y explicar el ciclo, incluyendo la verificación de no-regresión.</li>
+                                <li><strong>Proyectar Diapositiva 3</strong>.</li>
+                            </ul>
                         </td>
                         <td>
                             "¡Comienza el ciclo de calidad para la Feature 1!"
@@ -212,12 +249,15 @@
                     </tr>
                     <tr>
                         <td>
-                            <strong>Paso 2 (25 min):</strong> Facilitar el ciclo de pruebas exhaustivas, corrección y verificación de integración.
-                            <br><em>(<strong>Proyectar Diapositiva 4:</strong> Kanban Ciclo Calidad F1 - Recordatorio visual del ciclo 🔬->⚙️->🔬->✅ con énfasis en "¿Afecta al núcleo?").</em>
-                            <br>Circular, ayudar a identificar bugs sutiles o problemas de interacción.
-                            <br>Guiar al Ingeniero/a en la corrección.
-                            <br>Preguntar explícitamente al Tester si observa algún impacto negativo en el núcleo.
-                            <br>El Arquitecto/a T. supervisa la integridad del sistema.
+                            <strong>Paso 2 (25 min):</strong>
+                            <ul>
+                                <li>Facilitar el ciclo de pruebas exhaustivas, corrección y verificación de integración.</li>
+                                <li><strong>Proyectar Diapositiva 4</strong>.</li>
+                                <li>Circular, ayudar a identificar bugs sutiles o problemas de interacción.</li>
+                                <li>Guiar al Ingeniero/a en la corrección.</li>
+                                <li>Preguntar explícitamente al Tester si observa algún impacto negativo en el núcleo.</li>
+                                <li>El Arquitecto/a T. supervisa la integridad del sistema.</li>
+                            </ul>
                         </td>
                         <td>
                             "¡Adelante con las pruebas y correcciones! Tienen 25 minutos para este ciclo de calidad."
@@ -232,7 +272,10 @@
                     </tr>
                      <tr>
                         <td>
-                            <strong>Paso 3 (2 min):</strong> Resumen del ciclo Kanban aplicado a Feature 1.
+                            <strong>Paso 3 (2 min):</strong>
+                            <ul>
+                                <li>Resumen del ciclo Kanban aplicado a Feature 1.</li>
+                            </ul>
                         </td>
                         <td>
                             "Recordemos rápidamente el ciclo Kanban que hemos estado aplicando:"
@@ -244,15 +287,15 @@
                     </tr>
                 </table>
             </div>
-        </details>
+        </div>
 
         <!-- Actividad 3: ¡Feature 1 Integrada y Lista! -->
-        <details id="activity-3" class="activity">
-            <summary class="banner">
+        <div id="activity-3" class="activity">
+            <div class="banner" onclick="toggleContent('activity_3_content')">
                  <span class="activity-title">✅ Actividad 3: ¡Feature 1 Integrada y Lista!</span>
                  <span class="activity-time">⏰ Tiempo: 5 minutos</span>
-            </summary>
-            <div class="content">
+            </div>
+            <div id="activity_3_content" class="content">
                 <table>
                      <tr>
                         <th style="width: 50%;">Acción</th>
@@ -260,8 +303,12 @@
                     </tr>
                     <tr>
                         <td>
-                            <strong>Paso 1 (3 min):</strong> Revisión final del estado de la Feature 1. Tomar decisión final en Kanban.
-                            <br><em>(<strong>Proyectar Diapositiva 5:</strong> ¡Feature 1 Lista! - Kanban final S9. Preguntas: ¿Feature 1 funciona correctamente? ¿NO rompe nada del núcleo? Decisión final: Mover tarjeta a ✅ ¡Listo!).</em>
+                            <strong>Paso 1 (3 min):</strong>
+                            <ul>
+                                <li>Revisión final del estado de la Feature 1.</li>
+                                <li>Tomar decisión final en Kanban.</li>
+                                <li><strong>Proyectar Diapositiva 5</strong>.</li>
+                            </ul>
                         </td>
                         <td>
                             "¡Última revisión de calidad, equipos! Miremos la tarea de la Feature 1."
@@ -281,21 +328,24 @@
                     </tr>
                      <tr>
                         <td>
-                            <strong>Paso 2 (2 min):</strong> Cierre de la sesión y anticipación de la Sesión 10 (Decisión Estratégica).
+                            <strong>Paso 2 (2 min):</strong>
+                            <ul>
+                                <li>Cierre de la sesión y anticipación de la Sesión 10 (Decisión Estratégica).</li>
+                            </ul>
                         </td>
                         <td>
                             "¡Increíble trabajo asegurando la calidad de la Feature 1! Probar a fondo y cuidar la integración es esencial para robots complejos."
                             <br><br>
                             "Con la primera feature adicional completada (o casi), llegamos a un punto interesante."
                             <br><br>
-                            "En la Sesión 10, tendremos una '¡Decisión Estratégica!'. Evaluaremos el estado general del robot y decidiremos: ¿Nos enfocamos en <span style='color: red;'>refinar</span> lo que ya tenemos (mejorar estabilidad, corregir bugs menores)? ¿O intentamos añadir una <span style='color: red;'>segunda feature</span> más pequeña? ¡Será una decisión importante del equipo!"
+                            "En la Sesión 10, tendremos una '¡Decisión Estratégica!'. Evaluaremos el estado general del robot y decidiremos: ¿Nos enfocamos en <span style='color: red;'>refinar</span> lo que ya tenemos (mejorar estabilidad, corregir bugs menores)? ¿O intentamos añadir una <span style='color: red;'>segunda feature</span> más pequeña?"
                             <br><br>
                             "¡Guarden todo! ¡Nos vemos para tomar decisiones estratégicas!"
                         </td>
                     </tr>
                 </table>
             </div>
-        </details>
+        </div>
 
     </div> <!-- Fin del container -->
 </body>
